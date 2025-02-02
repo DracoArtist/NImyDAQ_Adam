@@ -1,5 +1,5 @@
-from classes.statistics_file import Statistics
-from classes.myDAQmeasures import Measure, DataShelf
+from my_classes.statistics_file import Statistics
+from my_classes.myDAQmeasures import Measure, DataShelf
 import matplotlib.pyplot as plt
 import csv
 

@@ -1,5 +1,5 @@
-from classes.statistics_file import Statistics
-from classes.myDAQmeasures import Measure
+from my_classes.statistics_file import Statistics
+from my_classes.myDAQmeasures import Measure
 
 measure = Measure()  # Initialisation de la classe measure qui va prendre les mesures et faire les graphiques
 
