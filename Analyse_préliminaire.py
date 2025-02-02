@@ -1,11 +1,12 @@
 from my_classes.statistics_file import Statistics
 from my_classes.myDAQmeasures import Measure
+import json
 
 measure = Measure()  # Initialisation de la classe measure qui va prendre les mesures et faire les graphiques
 
 # Déclaration des variables globales
-channel_voltage_ouput = "DAQ_team_3_PHS2903/ao0"
-channel_voltage_measure = "DAQ_team_3_PHS2903/ai0"
+channel_voltage_ouput = "moduleD/ao0"
+channel_voltage_measure = "tempSensor1/ai0"
 voltage = 2
 measure.sample_count = 1000  # nombre de points pris par mesures
 
@@ -34,3 +35,12 @@ print(f"""
       L'écart-type des mesures préliminaires est {statistics.standard_deviation}
 """)
 
+with open(r"results.json", 'a') as json_file:
+    text = {
+        'Analyse preliminaire':{
+            'Nombre de point': measure.sample_count,
+            'Moyenne': statistics.mean,
+            'Ecart-type': statistics.standard_deviation
+        }
+    }
+    json.dump(text, json_file, indent=2)

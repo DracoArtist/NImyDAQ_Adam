@@ -28,6 +28,8 @@ class Measure:
 
     def n_series_of_measure(self, n:int, initial_voltage: float, voltage_step: float, voltage_output_channel, known_resistor_channels, unknown_resistor_channel):
 
+        assert self.datashelf.__class__ == DataShelf, "ERROR: <Measure> does not contain DataShelf"
+
         for i in range(n):
             self.write_voltage(voltage=initial_voltage+i*voltage_step, channel=voltage_output_channel)
             self.read_voltage(known_resistor_channels, unknown_resistor_channel)
