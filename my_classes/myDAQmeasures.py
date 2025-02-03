@@ -26,7 +26,7 @@ class Measure:
             data = task.read(number_of_samples_per_channel=self.sample_count)
             self.data = data
 
-    def n_series_of_measure(self, n:int, initial_voltage: float, voltage_step: float, voltage_output_channel, known_resistor_channels, unknown_resistor_channel):
+    def n_series_of_voltage_measure(self, n:int, initial_voltage: float, voltage_step: float, voltage_output_channel, known_resistor_channels, unknown_resistor_channel):
 
         assert self.datashelf.__class__ == DataShelf, "ERROR: <Measure> does not contain DataShelf"
 

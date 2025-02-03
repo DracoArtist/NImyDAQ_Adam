@@ -12,16 +12,16 @@ statistics = Statistics()
 channel_voltage_ouput = "moduleD/ao0"
 reference_voltage_measure = "tempSensor1/ai0"  # Channel lié à la résistance connue
 unknonw_voltage_measure = "tempSensor1/ai1"  # Channel lié à la résistance inconnue
-voltage = 2
+initial_voltage = 2
 voltage_step = 0.4
 measure.sample_count = 10  # nombre de points pris par mesures
 reference_resistance = 100  # Ohm
 number_of_measures = 40
 
 # Prendre n mesures
-measure.n_series_of_measure(
+measure.n_series_of_voltage_measure(
     n=number_of_measures,
-    initial_voltage=voltage,
+    initial_voltage=initial_voltage,
     voltage_step=voltage_step,
     voltage_output_channel=channel_voltage_ouput,
     known_resistor_channels=reference_voltage_measure,
