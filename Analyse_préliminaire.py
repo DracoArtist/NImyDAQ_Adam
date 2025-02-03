@@ -44,3 +44,4 @@ with open(r"results.json", 'a') as json_file:
         }
     }
     json.dump(text, json_file, indent=2)
+
