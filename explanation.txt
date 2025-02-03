@@ -1,0 +1,13 @@
+Yo! Dans ce dossier, vous trouverez un fichier CSV et un fichier JSON
+
+Dans le fichier CSV, vous avez les 40 séries de mesures, qui correspondent aux données suivantes 
+    (chaque mesure consiste de 1000 lectures de voltage):
+-Reference Voltage: La tension moyenne lue aux borne de la résistance connue de 100 ohm
+-Reference Voltage std: L'écart-type de la tension lue aux borne de la résistance connue de 100 ohm
+-Unknown Voltage: La tension moyenne lue aux borne de la résistance inconnue
+-Unknown Voltage std: L'écart-type de la tension moyenne lue aux borne de la résistance inconnue
+-Current: Le courant qui passe dans le circuit, calulé par la loi d'ohm avec la résistance connue et la tension à ses bornes
+-Resistance: La résistance inconnue calculé avec le courant et la tension à ses bornes
+Les 40 mesures ont été prises avec un voltage total de (1+0.2*i)V, où i représente le numéro de la mesure (donc i=0,1,...,39)
+
+Dans le fichier JSON, vous avez les informations pour le numéro b. Ça devrait être bien indiqué ::)

@@ -10,6 +10,7 @@ class Statistics:
         sum_of_squares = sum([(i - mean)**2 for i in n])
         deviation = (1 / (len(n)-1)) * (sum_of_squares)**0.5
         self.standard_deviation = deviation
+        return [mean, deviation]
 
     def compute_current(self, voltage, resistance):
         return voltage / resistance

@@ -12,7 +12,7 @@ class Measure:
     def write_voltage(self, voltage: float, channel : str = 'DAQ_team_3_PHS2903/ao0'):
         with nidaqmx.Task() as task:
             task.ao_channels.add_ao_voltage_chan(channel, units=VoltageUnits.VOLTS)
-            task.write(2.0)
+            task.write(voltage)
 
     def read_voltage(self, *args):
         channels = args
@@ -31,12 +31,11 @@ class Measure:
         assert self.datashelf.__class__ == DataShelf, "ERROR: <Measure> does not contain DataShelf"
 
         for i in range(n):
-            self.write_voltage(voltage=initial_voltage+i*voltage_step, channel=voltage_output_channel)
+            voltage = initial_voltage + i*voltage_step
+            self.write_voltage(voltage=voltage, channel=voltage_output_channel)
             self.read_voltage(known_resistor_channels, unknown_resistor_channel)
 
             setattr(self.datashelf, f"measurment{i}", self.data)
-
-
 
     def plot_data(self, x_range, *args):  # args are lists of the data (y_values) 
         for data_list in args:
