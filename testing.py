@@ -1,8 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
-yerr = [[1,2],[2,1]]
-x = [1,2]
-y = [1,2]
-
-plt.errorbar(x, y, yerr=yerr)
-plt.show()
+a = 1 / np.array([2,3,4])
+print(a)
