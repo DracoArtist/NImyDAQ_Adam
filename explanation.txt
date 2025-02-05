@@ -11,3 +11,5 @@ Dans le fichier CSV, vous avez les 40 séries de mesures, qui correspondent aux 
 Les 40 mesures ont été prises avec un voltage total de (1+0.2*i)V, où i représente le numéro de la mesure (donc i=0,1,...,39)
 
 Dans le fichier JSON, vous avez les informations pour le numéro b. Ça devrait être bien indiqué ::)
+
+- Résistance de 9.99kOhm mesuré

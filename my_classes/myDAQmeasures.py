@@ -1,6 +1,6 @@
 import nidaqmx
 import nidaqmx.system
-from nidaqmx.constants import AcquisitionType, VoltageUnits
+from nidaqmx.constants import AcquisitionType, VoltageUnits, ResistanceUnits
 import matplotlib.pyplot as plt
 
 class Measure:
@@ -36,6 +36,18 @@ class Measure:
             self.read_voltage(known_resistor_channels, unknown_resistor_channel)
 
             setattr(self.datashelf, f"measurment{i}", self.data)
+    
+    def read_resistance(self, *args):
+        channels = args
+
+        with nidaqmx.Task() as task:
+
+            for channel in channels:
+                task.ai_channels.add_ai_resistance_chan(channel)
+
+            task.timing.cfg_samp_clk_timing(1000, sample_mode=AcquisitionType.FINITE, samps_per_chan=1000)
+            data = task.read(number_of_samples_per_channel=self.sample_count)
+            self.data = data
 
     def plot_data(self, x_range, *args):  # args are lists of the data (y_values) 
         for data_list in args:
