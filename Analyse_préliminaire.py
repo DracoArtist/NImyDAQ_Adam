@@ -1,6 +1,7 @@
 from my_classes.statistics_file import Statistics
 from my_classes.myDAQmeasures import Measure
 import json
+import numpy as np
 
 measure = Measure()  # Initialisation de la classe measure qui va prendre les mesures et faire les graphiques
 
@@ -22,8 +23,9 @@ measure.read_voltage(channel_voltage_measure)
 # Faire le graphique
 x_range = [i+1 for i in range(1000)]
 data = measure.data
+# print(np.array([data]).reshape(len(data), 1))
 
-measure.plot_data(x_range, data)
+# measure.plot_data(x_range, data)
 
 # Calculer la moyenne et l'écart-type
 statistics = Statistics()
@@ -35,13 +37,15 @@ print(f"""
       L'écart-type des mesures préliminaires est {statistics.standard_deviation}
 """)
 
-with open(r"results.json", 'a') as json_file:
+with open(r"Complete_mathilde_results.json", 'w') as json_file:
     text = {
         'Analyse preliminaire':{
             'Nombre de point': measure.sample_count,
             'Moyenne': statistics.mean,
             'Ecart-type': statistics.standard_deviation
-        }
+        },
+        'data': data
     }
     json.dump(text, json_file, indent=2)
 
+print('hello')

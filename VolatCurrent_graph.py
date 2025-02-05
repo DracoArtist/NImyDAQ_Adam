@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import csv
 import numpy as np
 
+
 # Définir les variables globales
 current_range = []
 voltage_range = []
@@ -29,7 +30,7 @@ resistance_range_array = np.array(resistance_range)
 
 # Erreur en y
 type_b = 0.0003
-delta_R = 1  # Put in the resistance!!
+delta_R = 0.1  # Put in the resistance!!
 
 relative_resistance_range = delta_R**2 / resistance_range_array**2
 relative_voltage_range = (voltage_error_range_array / voltage_range_array)**2
