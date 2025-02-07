@@ -23,15 +23,15 @@ for point in data:
 
 x_range = sorted(list(histogram_dict.keys()))
 
-# y_range = [histogram_dict[i] for i in x_range]
+y_range = [histogram_dict[i] for i in x_range]
 
-# plt.plot(x_range, y_range, 'o', markersize=5)
-# plt.ylabel('Nombre de mesures')
-# plt.xlabel('Tension mesurée (V)')
-# plt.xticks(ticks=x_range)
-# plt.grid(visible=True, which='major', ls=':')
-# plt.tick_params(top=True, right=True, labeltop=True, labelright=True)
-# plt.show()
+plt.plot(x_range, y_range, 'o', markersize=5)
+plt.ylabel('Nombre de mesures')
+plt.xlabel('Tension mesurée (V)')
+plt.xticks(ticks=x_range)
+plt.grid(visible=True, which='major', ls=':')
+plt.tick_params(top=True, right=True, labeltop=True, labelright=True)
+plt.show()
 
 
 

@@ -1,6 +1,4 @@
 import json
-import matplotlib.pyplot as plt
-import numpy as np
 from my_classes.statistics_file import Statistics
 
 stat = Statistics()
@@ -12,12 +10,14 @@ data = content['data']
 
 mean, std = stat.compute_mean_and_deviation(data)
 
-type_b = 3.245639 * 10**(-4) / (12**0.5)
+alpha_V2 = ((std / (len(data)**0.5))**2 + 0.0001**2)**0.5
+alpha_V1 = 0.009
+V1 = 2
 
-N_min = (std / ((1.1**2 - 1)**0.5 * type_b)) **2
+relative_R1 = 0.05
 
-R2 = 100*mean / (2-mean)
+R2 = 10801.332
 
-print(mean)
-print(R2)
-print([1,2]+[3,4])
+uncertainty = R2*(relative_R1**2 + (alpha_V2 / mean)**2 + ((alpha_V2**2 + alpha_V1**2)**0.5 / (2-mean))**2)**0.5
+
+print(f'{alpha_V2: .12f}')

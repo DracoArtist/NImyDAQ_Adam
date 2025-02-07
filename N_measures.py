@@ -28,7 +28,7 @@ measure.n_series_of_voltage_measure(
     unknown_resistor_channel=unknonw_voltage_measure
 )
 
-
+print('data_acquisition_done')
 # Faire un graphique avec les moyennes des données recueuillis
 reference_voltage_range = []
 reference_voltage_uncertainty_range = []
@@ -36,9 +36,12 @@ unknown_voltage_range = []
 unknown_voltage_uncertainty_range = []
 current_range = []
 resistance_range = []
+total_data = []
 
 for i in range(number_of_measures):
     data = getattr(datashelf, f"measurment{i}")
+    total_data.append(data[0])
+    total_data.append(data[1])
     
     reference_resistance_voltage, reference_resistance_voltage_deviation = statistics.compute_mean_and_deviation(data[0])
     reference_voltage_range.append(reference_resistance_voltage)
@@ -54,9 +57,10 @@ for i in range(number_of_measures):
     unknown_resistance = statistics.compute_resistance(voltage=unknown_resistance_voltage, current=current)
     resistance_range.append(unknown_resistance)
 
+print('math done')
 
 # Mettre les données dans un csv
-with open(r"data.csv", 'w', newline='') as csv_file:
+with open(r"Karim_data.csv", 'w', newline='') as csv_file:
     writer = csv.writer(csv_file)
     writer.writerow([
         'Reference Voltage',
@@ -74,7 +78,15 @@ with open(r"data.csv", 'w', newline='') as csv_file:
         resistance_range):
         writer.writerow([volt_k, std_k, volt_u, std_u, current, resistance])
 
+print('1st csv done')
 
+with open(r"Karim_total_data.csv", 'w', newline='') as csv_file:
+    writer = csv.writer(csv_file)
+    for i in range(len(total_data[0])):
+        row = [j[i] for j in total_data]
+        writer.writerow(row)
+
+print('2nd csv done')
 
 # plt.plot(unknown_voltage_range, current_range, 'o')
 # plt.xlabel("Tension aux bornes de la résistance inconnue")
