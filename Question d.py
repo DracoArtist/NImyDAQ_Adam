@@ -18,6 +18,3 @@ N_min = (std / ((1.1**2 - 1)**0.5 * type_b)) **2
 
 R2 = 100*mean / (2-mean)
 
-print(mean)
-print(R2)
-print([1,2]+[3,4])

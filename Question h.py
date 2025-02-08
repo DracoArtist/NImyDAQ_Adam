@@ -1,6 +1,10 @@
 import json
 from my_classes.statistics_file import Statistics
 
+"""
+Calcul l'incertitude pour la question h
+"""
+
 stat = Statistics()
 
 with open(r'Adam\Complete_adam_results.json', 'r') as json_file:
