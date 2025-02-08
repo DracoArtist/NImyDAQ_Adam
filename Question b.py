@@ -7,11 +7,7 @@ with open(r'Adam\Complete_adam_results.json', 'r') as json_file:
     content = json.load(json_file)
 
 data = content['data']
-# x_range = [i for i in range(len(data))]
-# y_range = [float(data[i]) for i in x_range]
 
-
-# Faire l'histogramme
 histogram_dict = {}
 
 for point in data:

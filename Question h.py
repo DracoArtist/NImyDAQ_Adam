@@ -20,4 +20,4 @@ R2 = 10801.332
 
 uncertainty = R2*(relative_R1**2 + (alpha_V2 / mean)**2 + ((alpha_V2**2 + alpha_V1**2)**0.5 / (2-mean))**2)**0.5
 
-print(f'{alpha_V2: .12f}')
+print(f'{uncertainty: .12f}')

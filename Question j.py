@@ -2,7 +2,12 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-csv_file = pd.read_csv(r'Adam\Adam_data.csv')
+"""
+Permet de tracer le graphique avec la regression linéaire pour la question j)
+Print l'équation de la droite et les incertitudes
+"""
+
+csv_file = pd.read_csv(r'Adam\Adam_data.csv')  # Mettre le file_path vers son csv
 
 V1_list = csv_file['Reference Voltage']
 V2_list = csv_file['Unknown Voltage']
@@ -45,10 +50,7 @@ plt.grid(visible=True, which='major', ls=':')
 plt.tick_params(top=True, right=True, labeltop=True, labelright=True)
 plt.ylim(0,10)
 plt.xlim(0,0.9)
-plt.text(
-    x=0.05,
-    y=8,
-    s=f"""
+print(f"""
     V = {slope: .2e} * I + {abs(origin): .2f}
     Incertitude sur la pente de {d_slope:.0e}
     Incertitude sur l'origine de {d_origin:.2f}
