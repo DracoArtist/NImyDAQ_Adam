@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from sympy import symbols, diff
 
 """
 Permet de tracer le graphique avec la regression linéaire pour la question j)
@@ -11,19 +12,34 @@ csv_file = pd.read_csv(r'Adam\Adam_data.csv')  # Mettre le file_path vers son cs
 
 V1_list = csv_file['Reference Voltage']
 V2_list = csv_file['Unknown Voltage']
+R2_list = csv_file['Resistance']
 Current = csv_file['Current']
 
 resolution = 9.369354 * 10**(-5)
 R1_relative_uncertainty = 0.05
+R1 = symbols('R1')
+u_R1 = symbols('u_R1')
 
 error_list = []
 
 for i in range(len(V1_list)):
-    V1 = V1_list[i]
-    V2 = V2_list[i]
-    current_Rerror = ((resolution / V1)**2 + R1_relative_uncertainty**2)**0.5
-    error = ((V2 * current_Rerror)**2 + resolution**2)**0.5
-    error_list.append(error)
+    V1 = symbols('V1')
+    u_V1 = symbols('u_V1')
+    V2 = symbols('V2')
+    R2 = symbols('R2')
+    current = V1 / R1
+
+    u_propagated_current = R2 * ( (diff(current, V1) * u_V1)**2 + (diff(current, R1) * u_R1)**2 )**0.5
+    error = (u_propagated_current**2 + resolution**2)**0.5
+    error_list.append(error.evalf(subs={
+        R1:100,
+        u_R1:5,
+        R2:R2_list[i],
+        V1:V1_list[i],
+        V2:V2_list[i],
+        u_V1:resolution
+    }))
+
 
 V1_list = np.array(V1_list)
 V2_list = np.array(V2_list)
@@ -75,13 +91,14 @@ plt.errorbar(
 ## Plot regression
 y_range = [(slope*i + origin) for i in Current]
 plt.plot(x_range, y_range, '#fc039d', zorder=3, linewidth=1.5)
-plt.fill_between(
-    x=x_range, 
-    y1=(slope + d_slope) * Current + (origin + d_origin),
-    y2=(slope - d_slope) * Current + (origin - d_origin),
-    zorder=1,
-    alpha=0.5
-)
+# plt.fill_between(
+#     x=x_range, 
+#     y1=(slope + d_slope) * Current + (origin + d_origin),
+#     y2=(slope - d_slope) * Current + (origin - d_origin),
+#     zorder=1,
+#     alpha=0.5
+# )
+
 
 
 plt.show()
